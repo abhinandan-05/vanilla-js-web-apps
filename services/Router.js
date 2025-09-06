@@ -17,7 +17,7 @@ const Router = {
     Router.go(location.pathname);
   },
   go: (route, addToHistory = true) => {
-    console.log(`Going to ${route}`);
+    // console.log(`Going to ${route}`);
 
     if (addToHistory) {
       history.pushState({ route }, "", route);
@@ -27,19 +27,19 @@ const Router = {
 
     switch (route) {
       case "/":
-        pageElement = document.createElement("h1");
-        pageElement.textContent = "Menu";
+        pageElement = document.createElement("menu-page");
+        // pageElement.textContent = "Menu";
         break;
       case "/order":
-        pageElement = document.createElement("h1");
-        pageElement.textContent = "Your Order";
+        pageElement = document.createElement("order-page");
+        // pageElement.textContent = "Your Order";
         break;
       default:
-        if (route.startsWithstartsWith("/product-")) {
-          pageElement = document.createElement("h1");
-          pageElement.textContent = "Details";
+        if (route.startsWith("/product-")) {
+          pageElement = document.createElement("details-page");
+          // pageElement.textContent = "Details";
           const paramId = route.substring(route.lastIndexOf("-") + 1);
-          pageElement.dataset.id = paramId;
+          pageElement.dataset.productId = paramId;
         }
         break;
     }
@@ -54,7 +54,12 @@ const Router = {
 
       window.scrollX = 0;
       window.scrollY = 0;
-    }
+    } /* ?else {
+      // coment 404
+      document.querySelector("main").innerHTML = "Oups, 404!";
+
+      You can configure the Live Server extension and set "index.html" as the value for Live Server > Settings: File. This will route every request through the index file.
+    } */
   },
 };
 
